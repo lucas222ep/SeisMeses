@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#25090f">
+<title>Para mi odontonena favorita</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Cinzel:wght@500;600&family=Parisienne&display=swap" rel="stylesheet">
+<style>
+:root{--ivo:#f7f0e5;--bor:#4a1523;--oro:#d4b97e;--oro2:#a9834a;--rosa:#c98a96;--tinta:#25090f}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;scroll-snap-type:y proximity;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{font-family:"Cormorant Garamond",Georgia,serif;background:var(--tinta);color:var(--ivo);overflow-x:hidden;font-size:clamp(16px,1.15vw,19px);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body.lock{overflow:hidden}
+body.lock .dots{display:none}
+@keyframes kb{to{transform:scale(1.12)}}
+@keyframes gira{to{transform:rotate(360deg)}}
+@keyframes rebota{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+@keyframes brilla{0%,55%{left:-60%}100%{left:140%}}
+@keyframes subir{0%{transform:translateY(0) rotate(-8deg);opacity:0}10%,90%{opacity:var(--op)}50%{transform:translateY(-55vh) translateX(var(--v)) rotate(8deg)}100%{transform:translateY(-115vh) translateX(calc(var(--v)*-1)) rotate(-8deg);opacity:0}}
+@keyframes titilar{0%,100%{opacity:0;transform:scale(.3)}50%{opacity:1;transform:scale(1) rotate(45deg)}}
+@keyframes entra{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes lat{50%{transform:scale(1.2)}}
+@keyframes correr{to{transform:translateX(-50%)}}
+@keyframes luzAmbiente{0%,100%{transform:translate3d(-3%,0,0) scale(1);opacity:.28}50%{transform:translate3d(3%,2%,0) scale(1.08);opacity:.48}}
+
+.p{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;justify-content:center;scroll-snap-align:start;overflow:hidden;padding:84px 26px}
+.fondo{position:absolute;inset:0;z-index:0;overflow:hidden}
+.fondo::after{content:"";position:absolute;inset:-18%;pointer-events:none;background:radial-gradient(38% 32% at 18% 28%,rgba(212,185,126,.12),transparent 100%),radial-gradient(35% 30% at 82% 72%,rgba(201,138,150,.10),transparent 100%);animation:luzAmbiente 24s ease-in-out infinite alternate;will-change:transform,opacity}
+.claro{color:var(--bor)}
+.claro .fondo{background:radial-gradient(90% 60% at 80% 0%,#fffaf1,transparent 70%),linear-gradient(165deg,#f9f2e7,#eadbc1)}
+.oscuro .fondo{background:radial-gradient(120% 80% at 50% 0%,#63263a 0%,#2f0f19 55%,#1d070d 100%)}
+.vino .fondo{background:radial-gradient(120% 90% at 50% 100%,#8a3350 0%,#4a1523 55%,#2a0b14 100%)}
+.ph{position:absolute;inset:0;z-index:0;opacity:0;transition:opacity 2.6s ease;animation:kb 26s ease-in-out infinite alternate;
+ background:linear-gradient(180deg,rgba(29,7,13,.22),rgba(29,7,13,.8)),var(--img) center/cover;-webkit-mask-image:var(--m);mask-image:var(--m)}
+.ph.ok{opacity:.8}
+.m0{--m:linear-gradient(180deg,#000 35%,transparent 98%)}
+.m1{--m:linear-gradient(180deg,transparent,#000 28%,#000 72%,transparent)}
+.in{position:relative;z-index:2;width:100%;max-width:520px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:20px;padding:8px 0}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .9s ease,transform .9s ease;transition-delay:calc(var(--i,0)*.14s)}
+.on .rv{opacity:1;transform:none}
+
+.ey{font:600 .74rem Cinzel,Georgia,serif;letter-spacing:.38em;padding-left:.38em;color:var(--oro2)}
+.oscuro .ey,.vino .ey{color:var(--oro)}
+h1,h2{font-weight:500;line-height:1.08}
+h2{font-size:clamp(2.2rem,8vw,3.5rem);text-wrap:balance}
+h2 em{color:var(--oro2);font-weight:400}
+.oscuro h2 em,.vino h2 em{color:var(--oro)}
+.tx{font:italic 400 clamp(1.2rem,4.6vw,1.42rem)/1.55 "Cormorant Garamond",Georgia,serif;opacity:.9;max-width:34ch;text-wrap:pretty}
+.orn{display:flex;align-items:center;gap:12px;color:var(--oro2);font-size:.9rem}
+.oscuro .orn,.vino .orn{color:var(--oro)}
+.orn::before,.orn::after{content:"";width:52px;height:1px;background:linear-gradient(90deg,transparent,currentColor)}
+.orn::after{transform:scaleX(-1)}
+.ic{width:84px;height:84px;border-radius:50%;display:grid;place-items:center;font-size:1.9rem;color:var(--oro2);border:1px solid currentColor;position:relative;margin-bottom:4px}
+.oscuro .ic,.vino .ic{color:var(--oro)}
+.ic::before{content:"";position:absolute;inset:-10px;border-radius:50%;border:1px dashed currentColor;opacity:.55;animation:gira 26s linear infinite}
+
+.btn{appearance:none;border:0;cursor:pointer;font:600 .78rem Cinzel,Georgia,serif;letter-spacing:.26em;padding:18px 32px 18px calc(32px + .26em);border-radius:999px;position:relative;overflow:hidden;
+ color:#2a0f17;background:linear-gradient(135deg,#ecd9aa,#d4b97e 55%,#a9834a);box-shadow:0 14px 30px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.55);transition:transform .2s,filter .2s;margin-top:6px}
+.claro .btn{color:var(--ivo);background:linear-gradient(135deg,#7a2b43,#4a1523);box-shadow:0 14px 30px rgba(74,21,35,.35),inset 0 1px 0 rgba(255,255,255,.2)}
+.btn::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.4),transparent);transform:skewX(-20deg);animation:brilla 6s ease-in-out infinite}
+.btn:hover,.btn:focus-visible{transform:translateY(-2px);filter:brightness(1.08)}
+.btn:active{transform:scale(.97)}
+.btn:focus-visible{outline:2px solid var(--oro);outline-offset:3px}
+
+/* portada */
+.peq{display:block;font:italic 400 1.5rem "Cormorant Garamond",serif;opacity:.9}
+.gr{display:block;font-size:clamp(3rem,15vw,4.8rem);letter-spacing:.03em;line-height:1}
+.sc{display:block;font:400 clamp(2.8rem,14vw,4.2rem)/1 Parisienne,cursive;color:var(--oro);margin-top:2px}
+.cue{appearance:none;background:none;border:0;color:var(--ivo);font:600 .68rem Cinzel,serif;letter-spacing:.34em;opacity:.8;cursor:pointer;margin-top:14px}
+.cue span{display:block;font-size:1.3rem;margin-top:4px;animation:rebota 1.8s ease-in-out infinite}
+/* tiempo */
+.tiempo{width:100%;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:6px;padding:24px 12px 19px;border-radius:20px;border:1px solid rgba(212,185,126,.42);
+ background:linear-gradient(145deg,rgba(29,7,13,.54),rgba(29,7,13,.32));-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);box-shadow:0 14px 38px rgba(0,0,0,.12),inset 0 1px 0 rgba(255,255,255,.07);animation:aura 7s ease-in-out infinite}
+@keyframes aura{0%,100%{box-shadow:0 0 14px rgba(212,185,126,.12),inset 0 0 18px rgba(212,185,126,.035)}50%{box-shadow:0 0 24px rgba(212,185,126,.23),inset 0 0 22px rgba(212,185,126,.07)}}
+.tiempo div{display:flex;flex-direction:column;align-items:center;gap:6px;position:relative}
+.tiempo div+div::before{content:"";position:absolute;left:-3px;top:8%;height:84%;width:1px;background:linear-gradient(180deg,transparent,rgba(212,185,126,.6),transparent)}
+.tiempo b{font:500 clamp(2.15rem,9vw,3.35rem)/1 Cinzel,serif;letter-spacing:.025em;color:#ead8ad;text-shadow:0 2px 18px rgba(212,185,126,.24);font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
+.tiempo small{font:500 clamp(.56rem,1.8vw,.68rem) Cinzel,serif;letter-spacing:.2em;padding-left:.2em;text-transform:uppercase;color:rgba(247,240,229,.78)}
+/* s1 · estilo estreno de Netflix: contenido a la izquierda, foto protagonista */
+#s1{justify-content:flex-start;align-items:flex-end;padding-left:clamp(22px,5vw,56px);padding-bottom:clamp(34px,7vh,64px)}
+#s1 .in{align-items:flex-start;text-align:left;max-width:600px}
+#s1 .tx{max-width:34ch}
+#s1 .ph{background:linear-gradient(90deg,rgba(24,6,12,.93) 0%,rgba(24,6,12,.66) 38%,rgba(24,6,12,.16) 76%,rgba(24,6,12,.38) 100%),var(--img) center/cover;-webkit-mask-image:linear-gradient(180deg,transparent,#000 10%,#000 88%,transparent);mask-image:linear-gradient(180deg,transparent,#000 10%,#000 88%,transparent)}
+#s1 .ph.ok{opacity:.94}
+#s1 h2{font-size:clamp(1.5rem,5vw,2.1rem)}
+#s1 h2 em{font-size:1em}
+#s1 .tiempo{margin-top:10px;padding:30px 22px 25px;gap:4px;grid-template-columns:1.35fr 1fr 1fr 1fr}
+#s1 .tiempo div{gap:4px}
+#s1 .tiempo div+div::before{left:-2px}
+#s1 .tiempo b{font-size:clamp(3rem,13.5vw,5.4rem);text-shadow:0 3px 22px rgba(212,185,126,.3)}
+#s1 .tiempo small{font-size:clamp(.62rem,2.1vw,.78rem);opacity:.85}
+.nf-tag{display:flex;align-items:center;gap:12px;padding-left:0}
+.nf-tag::before{content:"N";font:700 1rem/1 Georgia,serif;letter-spacing:0;color:#e50914;text-shadow:0 0 10px rgba(229,9,20,.55)}
+/* tira */
+.tira{width:100vw;overflow:hidden;padding:20px 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.carril{display:flex;gap:18px;width:max-content;animation:correr 40s linear infinite}
+.tira:hover .carril{animation-play-state:paused}
+.mini{appearance:none;border:1px solid rgba(169,131,74,.45);background:#fffdf9;padding:7px 7px 24px;border-radius:2px;cursor:pointer;flex:0 0 auto;transform:rotate(var(--r));box-shadow:0 12px 26px rgba(74,21,35,.28);transition:transform .25s}
+.mini:hover{transform:rotate(0) scale(1.06)}
+.mini img{display:block;width:118px;height:148px;object-fit:cover}
+.rot{min-height:4.7em;display:flex;align-items:center;justify-content:center;transition:opacity .6s}
+.fin{font:600 clamp(2rem,11vw,4.3rem) Cinzel,serif;letter-spacing:.12em;padding-left:.12em;color:var(--oro);line-height:1;text-wrap:balance}
+/* puntos */
+.dots{position:fixed;right:max(12px,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);z-index:5;display:flex;flex-direction:column;gap:13px;padding:12px 8px;border-radius:999px;background:rgba(29,7,13,.16);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.dots button{width:8px;height:8px;border-radius:50%;border:1px solid var(--oro);background:rgba(37,9,15,.25);padding:0;cursor:pointer;transition:.3s}
+.dots button.on{background:var(--oro);transform:scale(1.5)}
+#par{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:1}
+/* musica */
+.mus{position:fixed;left:max(14px,env(safe-area-inset-left,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:6;width:44px;height:44px;border-radius:50%;border:1px solid rgba(212,185,126,.55);background:rgba(29,7,13,.35);color:var(--oro);font-size:1.05rem;cursor:pointer;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);box-shadow:0 6px 16px rgba(0,0,0,.25);transition:.25s;opacity:.85}
+.mus:hover,.mus:focus-visible{opacity:1;transform:scale(1.07)}
+.mus:focus-visible{outline:2px solid var(--oro);outline-offset:3px}
+.mus.ap{animation:onda 2.2s ease-out infinite}
+.mus.ap::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:1px dashed rgba(212,185,126,.45);animation:gira 9s linear infinite}
+@keyframes onda{0%{box-shadow:0 0 0 0 rgba(212,185,126,.35)}70%{box-shadow:0 0 0 12px rgba(212,185,126,0)}100%{box-shadow:0 0 0 0 rgba(212,185,126,0)}}
+/* aniversario, petalos y galeria en grande */
+.aniv{font:600 .72rem Cinzel,serif;letter-spacing:.24em;padding-left:.24em;color:#ead8ad;border:1px solid rgba(212,185,126,.5);border-radius:999px;padding:10px 18px;background:rgba(212,185,126,.08);animation:aura 7s ease-in-out infinite}
+.petal{position:fixed;top:-30px;z-index:21;pointer-events:none;background:var(--c);border-radius:100% 4px 100% 4px;opacity:.8;animation:caer var(--d) ease-in forwards}
+@keyframes caer{from{transform:translateY(-6vh) translateX(0) rotate(0)}to{transform:translateY(108vh) translateX(var(--v)) rotate(340deg)}}
+.lb{position:fixed;inset:0;z-index:30;background:rgba(12,3,6,.96);display:none;align-items:center;justify-content:center}
+.lb.abierto{display:flex;animation:entra .3s ease-out both}
+.lb img{max-width:94vw;max-height:86vh;object-fit:contain;box-shadow:0 24px 70px rgba(0,0,0,.65)}
+.lbx,.lbn{position:absolute;width:44px;height:44px;border-radius:50%;border:1px solid rgba(212,185,126,.6);background:rgba(29,7,13,.5);color:var(--oro);cursor:pointer;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.lbx{top:calc(12px + env(safe-area-inset-top,0px));right:14px;font-size:1.1rem}
+.lbn{top:50%;transform:translateY(-50%);font-size:1.35rem}
+#lbP{left:max(10px,env(safe-area-inset-left,0px))}
+#lbN{right:max(10px,env(safe-area-inset-right,0px))}
+/* linea de tiempo y firma */
+.tl{width:100%;max-width:420px;display:flex;flex-direction:column;gap:16px;text-align:left;list-style:none}
+.tl li{position:relative;padding-left:30px;display:flex;flex-direction:column;gap:3px}
+.tl li::before{content:"";position:absolute;left:0;top:5px;width:14px;height:14px;border-radius:50%;border:2px solid var(--oro);background:rgba(37,9,15,.9);box-shadow:0 0 0 4px rgba(212,185,126,.14)}
+.tl li::after{content:"";position:absolute;left:7px;top:26px;bottom:-15px;width:1px;background:linear-gradient(180deg,rgba(212,185,126,.6),transparent)}
+.tl li:last-child::after{display:none}
+.tl b{font:600 .78rem Cinzel,serif;letter-spacing:.18em;color:var(--oro)}
+.tl span{font:italic 500 1.18rem/1.4 "Cormorant Garamond",serif;opacity:.92}
+.firma{font:400 clamp(2rem,8vw,2.8rem)/1.2 Parisienne,cursive;color:var(--oro);transform:rotate(-2deg);text-shadow:0 2px 14px rgba(212,185,126,.25)}
+.tl li.cona{cursor:pointer}
+.tl li.cona:hover b,.tl li.cona:focus-visible b{color:#ead8ad}
+.tl li i{font:600 .62rem Cinzel,serif;font-style:normal;letter-spacing:.22em;padding-left:.22em;color:var(--oro2);border:1px solid rgba(169,131,74,.45);border-radius:999px;padding:5px 12px 5px calc(12px + .22em);align-self:flex-start;background:rgba(212,185,126,.06);transition:.25s}
+.tl li.cona:hover i,.tl li.cona:focus-visible i{color:var(--oro);border-color:rgba(212,185,126,.7);transform:translateY(-1px)}
+.corazon{position:absolute;bottom:-60px;line-height:1;color:var(--c);animation:subir linear forwards}
+.brillo{position:absolute;color:var(--oro);line-height:1;opacity:0;text-shadow:0 0 8px rgba(255,255,255,.8),0 0 16px rgba(212,185,126,.7);animation:titilar var(--d,3s) ease-in-out forwards}
+
+/* ventana */
+.modal{position:fixed;inset:0;z-index:20;display:none;flex-direction:column;color:var(--bor);background:radial-gradient(90% 60% at 80% 0%,#fffaf1,transparent 70%),linear-gradient(165deg,#f9f2e7,#e9d8bc)}
+.modal.abierto{display:flex;animation:entra .35s ease-out both}
+.barra{display:flex;align-items:center;justify-content:space-between;padding:calc(12px + env(safe-area-inset-top,0px)) 18px 12px}
+.mt{font:400 2.1rem Parisienne,cursive}
+.cerrar{appearance:none;border:1px solid rgba(169,131,74,.55);background:#fffdf9;color:var(--bor);width:42px;height:42px;border-radius:50%;font-size:1.1rem;cursor:pointer;box-shadow:0 4px 12px rgba(74,21,35,.2)}
+.cuerpo{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:6px 16px calc(26px + env(safe-area-inset-bottom,0px))}
+.estado{text-align:center;font:italic 1.25rem/1.6 "Cormorant Garamond",serif;padding:30px 10px}
+.estado a{color:var(--oro2);font-weight:600}
+.duo{display:flex;flex-direction:column;align-items:center;gap:12px}
+.tabs{display:flex;justify-content:center;gap:8px;max-width:640px;margin:0 auto 16px}
+.tabs button{flex:1;max-width:230px;padding:12px 10px;border-radius:999px;border:1px solid rgba(169,131,74,.65);background:transparent;color:var(--bor);font:600 .72rem Cinzel,serif;letter-spacing:.2em;cursor:pointer;transition:.25s}
+.tabs button.on{background:linear-gradient(135deg,#7a2b43,#4a1523);color:var(--ivo);border-color:transparent;box-shadow:0 8px 18px rgba(74,21,35,.3)}
+#cPag{max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+#cPag canvas{width:100%;height:auto;background:#fff;border-radius:3px;box-shadow:0 14px 34px rgba(74,21,35,.28)}
+.vid{max-width:640px;margin:0 auto;padding:12px;background:#fffdf9;border:1px solid rgba(169,131,74,.45);border-radius:4px;box-shadow:0 20px 44px rgba(74,21,35,.3)}
+.vid video{width:100%;max-height:72vh;display:block;background:#000}
+.gal{max-width:420px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:16px}
+.marco{width:100%;background:#fffdf9;padding:14px 14px 20px;border:1px solid rgba(169,131,74,.5);border-radius:3px;transform:rotate(-1deg);touch-action:pan-y;box-shadow:0 0 0 6px rgba(255,255,255,.4),0 24px 48px rgba(74,21,35,.32)}
+.ven{aspect-ratio:4/5;overflow:hidden;background:#eadbc7;box-shadow:0 0 0 1px rgba(169,131,74,.5)}
+.ven img{width:100%;height:100%;object-fit:cover;display:block}
+.ven img.z{animation:zoom 9s ease-out both}
+@keyframes zoom{from{opacity:0;transform:scale(1.02)}8%{opacity:1}to{opacity:1;transform:scale(1.12)}}
+.pie{margin-top:16px;min-height:1.6em;text-align:center;font:italic 500 1.2rem/1.5 "Cormorant Garamond",serif}
+.nav{display:flex;align-items:center;gap:16px}
+.fl{appearance:none;border:1px solid rgba(169,131,74,.55);background:#fffdf9;color:var(--bor);width:46px;height:46px;border-radius:50%;font-size:1.4rem;cursor:pointer;box-shadow:0 4px 12px rgba(74,21,35,.2)}
+.pts{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;max-width:240px}
+.pts i{width:7px;height:7px;border-radius:50%;background:rgba(74,21,35,.22);transition:.3s}
+.pts i.on{background:var(--oro2);transform:scale(1.5)}
+#rLista{max-width:480px;margin:0 auto;list-style:none;display:flex;flex-direction:column;gap:12px}
+#rLista li{display:flex;gap:14px;align-items:center;padding:14px 16px;background:#fffdf9;border:1px solid rgba(169,131,74,.4);border-radius:12px;box-shadow:0 8px 20px rgba(74,21,35,.15);animation:entra .6s ease-out both;font:italic 500 1.2rem/1.35 "Cormorant Garamond",serif}
+#rLista b{flex:0 0 36px;height:36px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#7a2b43,#4a1523);color:var(--oro);font:600 .95rem Cinzel,serif}
+.sor{max-width:420px;margin:30px auto 0;padding:34px 22px;text-align:center;background:rgba(255,253,249,.7);border:1px solid rgba(169,131,74,.45);border-radius:18px;box-shadow:0 14px 34px rgba(74,21,35,.2)}
+.sor .gc{font-size:3.4rem;color:var(--rosa);display:block;animation:lat 1.6s ease-in-out infinite}
+#sTxt{font:italic 500 1.5rem/1.45 "Cormorant Garamond",serif;margin:14px 0 22px;min-height:6em;display:flex;align-items:center;justify-content:center}
+#sTxt.in{animation:entra .6s ease-out both}
+@media(max-width:600px){
+ .p{padding:calc(64px + env(safe-area-inset-top,0px)) 24px calc(64px + env(safe-area-inset-bottom,0px))}
+ .in{max-width:440px;gap:clamp(15px,4.5vw,21px)}
+ .ey{font-size:.66rem;letter-spacing:.3em}
+ .tiempo{grid-template-columns:1.35fr 1fr 1fr 1fr;gap:3px;padding:20px 7px 16px;border-radius:16px}
+ .tiempo small{letter-spacing:.12em}
+ .dots{right:5px;gap:11px;padding:10px 6px}
+ .dots button{width:7px;height:7px}
+ /* en celular el bloque baja al fondo, como la app de Netflix */
+ #s1{align-items:flex-end;padding-left:24px}
+ #s1 .in{padding-bottom:calc(40px + env(safe-area-inset-bottom,0px))}
+ #s1 .tiempo{padding:24px 14px 19px}
+ .tira{width:calc(100vw + 48px)}
+ .btn{max-width:100%;letter-spacing:.16em;padding-inline:21px}
+ .duo{width:100%}
+}
+@media(max-height:650px) and (orientation:landscape){.p{min-height:100svh;padding-block:42px}.in{gap:13px}.ic{width:64px;height:64px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}.corazon,.brillo{display:none}.fondo::after{opacity:.28}}
+</style>
+</head>
+<body>
+<div id="par" aria-hidden="true"></div>
+<nav class="dots" id="dots" aria-label="Secciones"></nav>
+<button class="mus" id="mus" aria-label="Activar o pausar la musica" hidden>&#9834;</button>
+<audio id="song" loop preload="auto" src="cancion.mp3"></audio>
+
+<section class="p oscuro on" id="s0">
+ <div class="fondo"></div><div class="ph m0" id="ph0"></div>
+ <div class="in">
+  <p class="ey rv" style="--i:0" id="saludo">UN DETALLE PARA TI</p>
+  <h1 class="rv" style="--i:1"><span class="peq">Para mi</span><span class="gr">Odontonena</span><span class="sc">favorita</span></h1>
+  <span class="orn rv" style="--i:2">♥</span>
+  <p class="tx rv" style="--i:3">Hecho con paciencia, con cariño y con muchas ganas de verte sonreír.</p>
+  <button class="cue rv" style="--i:4" data-ir="1">DESLIZA<span>⌄</span></button>
+ </div>
+</section>
+
+<section class="p oscuro" id="s1">
+ <div class="fondo"></div><div class="ph m1" id="ph1"></div>
+ <div class="in">
+  <p class="ey nf-tag rv" style="--i:0">NUESTRO TIEMPO</p>
+  <h2 class="rv" style="--i:1">Cada día a tu lado <em>vale una vida</em></h2>
+  <div class="tiempo rv" style="--i:2"><div><b>0</b><small>días</small></div><div><b>00</b><small>horas</small></div><div><b>00</b><small>min</small></div><div><b>00</b><small>seg</small></div></div>
+  <p class="aniv" id="aniv" hidden></p>
+  <p class="tx rv" style="--i:4">Desde que llegaste, mis días tienen otro color, otro ritmo y tengo una razón más para sonreír.</p>
+ </div>
+</section>
+
+<section class="p claro" id="s2">
+ <div class="fondo"></div>
+ <div class="in">
+  <p class="ey rv" style="--i:0">I · LA CARTA</p>
+  <div class="ic rv" style="--i:1">✉</div>
+  <h2 class="rv" style="--i:2">Lo que mi corazón <em>quiere decirte</em></h2>
+  <p class="tx rv" style="--i:3">Escribí cada palabra pensando en ti, y preparé un detalle más. Tómate un momento y disfrútalos con calma.</p>
+  <div class="duo rv" style="--i:4"><button class="btn" data-k="carta" data-a="0">LEER MI CARTA</button><button class="btn" data-k="carta" data-a="1">VER MI DETALLE</button></div>
+ </div>
+</section>
+
+<section class="p oscuro" id="s3">
+ <div class="fondo"></div>
+ <div class="in">
+  <p class="ey rv" style="--i:0">II · EL VIDEO</p>
+  <div class="ic rv" style="--i:1">▶</div>
+  <h2 class="rv" style="--i:2">Un recuerdo <em>en movimiento</em></h2>
+  <p class="tx rv" style="--i:3">Pequeños momentos que, juntos, cuentan nuestra historia.</p>
+  <button class="btn rv" style="--i:4" data-k="video">VER EL VIDEO</button>
+ </div>
+</section>
+
+<section class="p claro" id="s4">
+ <div class="fondo"></div>
+ <div class="in">
+  <p class="ey rv" style="--i:0">III · LAS FOTOS</p>
+  <h2 class="rv" style="--i:1">Nuestros <em>momentos</em></h2>
+  <div class="tira rv" style="--i:2" id="tira" hidden><div class="carril" id="carril"></div></div>
+  <p class="tx rv" style="--i:3">Cada foto guarda una risa, un abrazo y un día que quiero repetir.</p>
+  <button class="btn rv" style="--i:4" data-k="fotos">VER LA GALERÍA</button>
+ </div>
+</section>
+
+<section class="p oscuro" id="s4b">
+ <div class="fondo"></div>
+ <div class="in">
+  <p class="ey rv" style="--i:0">IV · NUESTRAS FECHAS</p>
+  <div class="ic rv" style="--i:1">✦</div>
+  <h2 class="rv" style="--i:2">Los días que nos <em>hicieron nosotros</em></h2>
+  <ul class="tl rv" style="--i:3" id="tl"></ul>
+ </div>
+</section>
+<section class="p vino" id="s5">
+ <div class="fondo"></div>
+ <div class="in">
+  <p class="ey rv" style="--i:0">V · RAZONES</p>
+  <div class="ic rv" style="--i:1">♥</div>
+  <h2 class="rv" style="--i:2">Por qué <em>te amo</em></h2>
+  <p class="tx rot rv" style="--i:3" id="rot"></p>
+  <button class="btn rv" style="--i:4" data-k="razones">DESCUBRIR LAS 10 RAZONES</button>
+ </div>
+</section>
+
+<section class="p claro" id="s6">
+ <div class="fondo"></div>
+ <div class="in">
+  <p class="ey rv" style="--i:0">VI · SORPRESA</p>
+  <div class="ic rv" style="--i:1">❖</div>
+  <h2 class="rv" style="--i:2">Una última <em>sorpresa</em></h2>
+  <p class="tx rv" style="--i:3">Tócala cuando necesites una sonrisa. Siempre habrá un mensaje esperándote.</p>
+  <button class="btn rv" style="--i:4" data-k="sorpresa">ABRIR SORPRESA</button>
+ </div>
+</section>
+
+<section class="p oscuro" id="s7">
+ <div class="fondo"></div>
+ <div class="in">
+  <p class="fin rv" style="--i:0">TE AMO CON EL ALMA</p>
+    <p class="tx rv" style="--i:2">y el alma es eterna.</p>
+  <span class="orn rv" style="--i:1">♥</span>
+  <p class="tx rv" style="--i:2">Con todo mi amor, hoy y siempre.</p>
+  <p class="firma rv" style="--i:5">Esteban</p>
+  <button class="btn rv" style="--i:3" data-ir="0">VOLVER AL INICIO</button>
+ </div>
+</section>
+
+<section class="modal" id="modal" role="dialog" aria-modal="true">
+<div class="barra"><span class="mt" id="mt"></span><button class="cerrar" id="cerrar" aria-label="Cerrar">✕</button></div>
+ <div class="cuerpo" id="mc"></div>
+</section>
+
+<template id="t-carta"><div class="tabs" id="cTabs"></div><div class="estado" id="cEst">Abriendo tu carta…</div><div id="cPag"></div></template>
+<template id="t-video"><div class="vid"><video controls playsinline preload="metadata" src="video.mp4"></video></div></template>
+<template id="t-fotos"><div class="gal"><div class="marco" id="gM"><div class="ven"><img id="gI" alt="Nuestra foto"></div><p class="pie" id="gT"></p></div>
+ <div class="nav"><button class="fl" id="gP" aria-label="Anterior">‹</button><span class="pts" id="gD"></span><button class="fl" id="gN" aria-label="Siguiente">›</button></div></div></template>
+<template id="t-razones"><ol id="rLista"></ol></template>
+<template id="t-sorpresa"><div class="sor"><span class="gc">♥</span><p id="sTxt"></p><button class="btn" id="sBtn">OTRO MENSAJE</button></div></template>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+/* ============ EDITA AQUÍ ============ */
+const CFG = { inicio: "2026-05-13T13:00:00", // fecha en que empezaron
+fechas: [
+    { d: "2026-04-13", t: "Nos vimos por primera vez", f: "" },
+    { d: "2026-04-26", t: "Empezamos a hablar", f: "" },
+    { d: "2026-05-09", t: "Nuestra primera vez en el cine", f: "" },
+    { d: "2026-05-13", t: "Nuestra historia empezó: nuestro primer beso", f: "" },
+    { d: "2026-06-05", t: "La primera vez que fuimos a comer un postre juntos, sin mochila jajaja", f: "fotos/primersalida.jpg" },
+    { d: "2026-08-27", t: "Viajamos a Lima", f: "" },
+    { d: "2026-08-29", t: "Fuimos a un concierto juntos por primera vez", f: "fotos/primerconcierto.jpg" }
+  ], // hitos (d = fecha, t = momento, f = foto opcional en fotos/)
+  cartas: [ { n: "Mi carta", f: "carta.pdf" }, { n: "Mi detalle", f: "detalle.pdf" } ] }; // nombre de cada pestaña y su PDF
+// Foto de portada: fotos/portada.jpg  |  Foto desvanecida del contador: fotos/tiempo.jpg (si no existe usa la portada)
+const fotos = [ // fotos/foto1.jpg ... foto10.jpg (las que no existan se ignoran). "t" es opcional.
+  {src:"fotos/foto1.jpg",t:"Contigo todo es mejor."},{src:"fotos/foto2.jpg",t:"Haces que mi mundo sea mejor."},{src:"fotos/foto3.jpg",t:"Espero que tus abrazos nunca me falten"},
+  {src:"fotos/foto4.jpg",t:"Tienes el poder de que algo simple se vuelva mágico"},{src:"fotos/foto5.jpg",t:"Eres la certeza en mi mundo de dudas"},{src:"fotos/foto6.jpg",t:"Sin duda, eres la respuesta a mis oraciones"},
+  {src:"fotos/foto7.jpg",t:"Me gustas para cosas tan serias como perder la cordura contigo"},{src:"fotos/foto8.jpg",t:"Contigo no hay casualidad, solo una hermosa casualidad"},{src:"fotos/foto9.jpg",t:"No se que tienes, pero lo tienes todo para mí"},{src:"fotos/foto10.jpg",t:"Eres el motivo de todos mis impulsos"}
+];
+const razones = [
+  "Porque haces que mis días ordinarios se vuelvan especiales.",
+  "Porque admiro la mujer que eres y todo lo que logras con tu esfuerzo.",
+  "Porque tu sonrisa tiene algo que no sé cómo explicar con palabras.",
+  "Porque me gusta cuidar de ti.",
+  "Porque contigo he podido compartir cosas que antes solo imaginaba.",
+  "Porque me encanta conocerte cada día un poquito más.",
+  "Porque me inspiras a querer ser mejor persona.",
+  "Porque me haces querer muchos más días como hoy.",
+  "Porque me haces plantear la pregunta, ¿Qué puedo hacer para que sonría?",
+  "Simplemente porque eres tú."
+];
+const mensajes = [
+  "Hoy solo quería recordarte que eres lo mejor que me ha pasado.","Si hoy fue un día difícil, ven, que te debo un abrazo largo.",
+  "Estoy muy orgulloso de la mujer que eres y de todo lo que estás logrando.","Gracias por quedarte, por reírte conmigo y por quererme así.",
+  "Si tuviera que elegir de nuevo, te elegiría mil veces.","Eres mi lugar favorito en el mundo.",
+  "Que nada te quite esa sonrisa, mi odontonena.","Ya te extraño, y aún ni nos hemos despedido."
+];
+/* ==================================== */
+const $ = s => document.querySelector(s), R = Math.random;
+const M = $("#modal"), C = $("#mc");
+const titulos = {carta:"Mi carta para ti",video:"Nuestro video",fotos:"Nuestras fotos",razones:"Por qué te amo",sorpresa:"Una sorpresa"};
+const inits = {carta:iniCarta,fotos:iniFotos,razones:iniRazones,sorpresa:iniSorpresa};
+let ok = [];
+
+/* Fotos de fondo desvanecidas */
+const primera = l => new Promise(r => { let i = 0; const t = () => { if (i >= l.length) return r(null); const im = new Image(); im.onload = () => r(l[i]); im.onerror = () => { i++; t(); }; im.src = l[i]; }; t(); });
+const poner = (id, l) => primera(l).then(u => { if (!u) return; const e = $(id); e.style.setProperty("--img", `url("${u}")`); e.classList.add("ok"); });
+poner("#ph0", ["fotos/portada.jpg"]);
+poner("#ph1", ["fotos/tiempo.jpg", "fotos/portada.jpg", "fotos/foto1.jpg"]);
+
+/* Ventanas */
+function abrir(k, arg) {
+  $("#mt").textContent = titulos[k]; C.innerHTML = ""; C.appendChild($("#t-" + k).content.cloneNode(true));
+  M.classList.add("abierto"); document.body.classList.add("lock"); C.scrollTop = 0; if (inits[k]) inits[k](arg);
+}
+function cerrar() { M.classList.remove("abierto"); document.body.classList.remove("lock"); C.innerHTML = ""; }
+document.querySelectorAll("[data-k]").forEach(b => b.onclick = () => abrir(b.dataset.k, +b.dataset.a || 0));
+document.querySelectorAll("[data-ir]").forEach(b => b.onclick = () => irA(+b.dataset.ir));
+$("#cerrar").onclick = cerrar;
+document.addEventListener("keydown", e => {
+  if (lbOn()) { if (e.key === "Escape") lbCierra(); if (e.key === "ArrowRight") lbVe(1); if (e.key === "ArrowLeft") lbVe(-1); }
+  else if (e.key === "Escape") cerrar();
+});
+const irA = n => $("#s" + n).scrollIntoView({behavior: "smooth"});
+
+/* Cartas PDF (con pestañas) dibujadas página por página: funciona en celular */
+const docs = {}; let tok = 0;
+function iniCarta(a = 0) {
+  const tabs = C.querySelector("#cTabs");
+  tabs.innerHTML = CFG.cartas.map((c, k) => `<button data-n="${k}">${c.n}</button>`).join("");
+  tabs.onclick = e => { const b = e.target.closest("button"); if (b) mostrarCarta(+b.dataset.n); };
+  mostrarCarta(Math.min(a, CFG.cartas.length - 1));
+}
+async function mostrarCarta(k) {
+  const t = ++tok, est = C.querySelector("#cEst"), cont = C.querySelector("#cPag"), f = CFG.cartas[k].f;
+  [...C.querySelector("#cTabs").children].forEach((b, i) => b.classList.toggle("on", i === k));
+  cont.innerHTML = ""; est.hidden = false; est.textContent = "Abriendo…"; C.scrollTop = 0;
+  try {
+    pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+    const pdf = docs[f] = docs[f] || await pdfjsLib.getDocument(f).promise;
+    const w = cont.clientWidth || 320, d = Math.min(devicePixelRatio || 1, 2.5);
+    for (let n = 1; n <= pdf.numPages; n++) {
+      if (t !== tok || !M.classList.contains("abierto")) return;
+      const p = await pdf.getPage(n), b = p.getViewport({scale: 1}), v = p.getViewport({scale: w / b.width * d});
+      const c = document.createElement("canvas"); c.width = v.width; c.height = v.height; cont.appendChild(c);
+      await p.render({canvasContext: c.getContext("2d"), viewport: v}).promise; est.hidden = true;
+    }
+  } catch (e) {
+    if (t !== tok) return; est.hidden = false;
+    est.innerHTML = 'No pude mostrar este archivo aquí. <a href="' + f + '" target="_blank" rel="noopener">Toca para abrirlo</a>.';
+  }
+}
+
+/* Galería */
+function iniFotos(i0 = 0) {
+  if (!ok.length) { C.innerHTML = '<p class="estado">Aún no hay fotos en la carpeta fotos/ ♥</p>'; return; }
+  let i = i0, x0 = null;
+  const im = C.querySelector("#gI"), tx = C.querySelector("#gT"), pts = C.querySelector("#gD"), mk = C.querySelector("#gM");
+  pts.innerHTML = ok.map(() => "<i></i>").join("");
+  const ver = n => { i = (n + ok.length) % ok.length; im.classList.remove("z"); void im.offsetWidth; im.src = ok[i].src; im.classList.add("z");
+    tx.textContent = ok[i].t || ""; [...pts.children].forEach((d, k) => d.classList.toggle("on", k === i)); };
+  C.querySelector("#gP").onclick = () => ver(i - 1); C.querySelector("#gN").onclick = () => ver(i + 1);
+  mk.ontouchstart = e => x0 = e.touches[0].clientX;
+  mk.ontouchend = e => { if (x0 === null) return; const d = e.changedTouches[0].clientX - x0; if (Math.abs(d) > 45) ver(i + (d < 0 ? 1 : -1)); x0 = null; };
+  im.style.cursor = "zoom-in"; im.onclick = () => lbAbre(i);
+  ver(i);
+}
+function iniRazones() { C.querySelector("#rLista").innerHTML = razones.map((r, i) => `<li style="animation-delay:${i * .12}s"><b>${i + 1}</b><span>${r}</span></li>`).join(""); }
+let ult = -1;
+function iniSorpresa() { petalos(16);
+  const t = C.querySelector("#sTxt");
+  const dar = () => { let n; do n = Math.floor(R() * mensajes.length); while (n === ult && mensajes.length > 1);
+    ult = n; t.classList.remove("in"); void t.offsetWidth; t.textContent = mensajes[n]; t.classList.add("in"); };
+  C.querySelector("#sBtn").onclick = dar; dar();
+}
+
+/* Tira de fotos que se desliza sola */
+Promise.all(fotos.map(f => new Promise(r => { const im = new Image(); im.onload = () => r(f); im.onerror = () => r(null); im.src = f.src; })))
+.then(l => {
+  ok = l.filter(Boolean); if (!ok.length) return;
+  const mitad = Array.from({length: Math.ceil(6 / ok.length) * ok.length}, (_, k) => k % ok.length);
+  const h = mitad.map((i, k) => `<button class="mini" style="--r:${k % 2 ? 2.5 : -2.5}deg" data-i="${i}" aria-label="Ver foto"><img src="${ok[i].src}" alt="" loading="lazy"></button>`).join("");
+  const car = $("#carril"); car.innerHTML = h + h; car.style.animationDuration = mitad.length * 6 + "s";
+  car.onclick = e => { const b = e.target.closest(".mini"); if (b) abrir("fotos", +b.dataset.i); };
+  $("#tira").hidden = false;
+});
+
+/* Frases rotativas de "por qué te amo" */
+let ir = 0; const rot = $("#rot");
+const rotar = () => { rot.style.opacity = 0; setTimeout(() => { rot.textContent = razones[ir++ % razones.length]; rot.style.opacity = .88; }, 600); };
+rotar(); setInterval(rotar, 4500);
+
+/* Contador discreto */
+const cif = document.querySelectorAll(".tiempo b"), t0 = new Date(CFG.inicio).getTime();
+function tic() {
+  let s = Math.max(0, Math.floor((Date.now() - t0) / 1000)); const d = Math.floor(s / 86400); s %= 86400;
+  const h = Math.floor(s / 3600); s %= 3600; const m = Math.floor(s / 60); s %= 60;
+  [d, h, m, s].forEach((v, k) => cif[k].textContent = String(v).padStart(k ? 2 : 1, "0"));
+}
+tic(); setInterval(tic, 1000);
+
+/* Aparecer por sección y puntos de navegación */
+const secs = [...document.querySelectorAll(".p")], dots = $("#dots");
+secs.forEach((s, i) => { const b = document.createElement("button"); b.setAttribute("aria-label", "Ir a la sección " + (i + 1)); b.onclick = () => irA(i); dots.appendChild(b); });
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return; e.target.classList.add("on");
+  [...dots.children].forEach((d, k) => d.classList.toggle("on", secs[k] === e.target));
+}), {threshold: .45});
+secs.forEach(s => io.observe(s));
+
+/* Corazones y destellos sutiles */
+const par = $("#par"), cols = ["#c98a96", "#c98a96", "#a8455f", "#d4b97e", "#e8c4c8"];
+const reducir = matchMedia("(prefers-reduced-motion: reduce)").matches;
+function corazon() {
+  if (reducir || par.querySelectorAll(".corazon").length >= 10) return;
+  const c = document.createElement("span"); c.className = "corazon"; c.textContent = "♥";
+  c.style.cssText = `left:${R() * 100}vw;font-size:${10 + R() * 22}px;animation-duration:${10 + R() * 9}s;--c:${cols[Math.floor(R() * cols.length)]};--op:${(.18 + R() * .3).toFixed(2)};--v:${(R() * 60 - 30).toFixed(0)}px`;
+  c.onanimationend = () => c.remove(); par.appendChild(c);
+}
+function brillo() {
+  if (reducir || par.querySelectorAll(".brillo").length >= 9) return;
+  const b = document.createElement("span"); b.className = "brillo"; b.textContent = R() < .5 ? "✦" : "✧";
+  b.style.cssText = `left:${R() * 94}vw;top:${R() * 90}vh;font-size:${9 + R() * 14}px;--d:${(2.5 + R() * 2.5).toFixed(1)}s`;
+  b.onanimationend = () => b.remove(); par.appendChild(b);
+}
+for (let i = 0; i < 6; i++) { setTimeout(corazon, i * 500); setTimeout(brillo, i * 350); }
+setInterval(corazon, 1100); setInterval(brillo, 550);
+/* Musica de fondo: cancion.mp3 (si el archivo no existe, el boton no aparece) */
+const cancion = $("#song"), bMus = $("#mus");
+let musOn = true;
+const tocaMus = () => { if (musOn) cancion.play().then(() => bMus.classList.add("ap")).catch(() => {}); };
+const ponMus = () => { bMus.hidden = false; tocaMus(); };
+cancion.addEventListener("loadeddata", ponMus);
+cancion.addEventListener("error", () => { bMus.hidden = true; });
+if (cancion.readyState >= 2) ponMus();
+document.addEventListener("pointerdown", () => { if (musOn && cancion.paused && !bMus.hidden) tocaMus(); });
+bMus.onclick = () => { if (cancion.paused) { musOn = true; tocaMus(); } else { musOn = false; cancion.pause(); bMus.classList.remove("ap"); } };
+/* La musica se pausa mientras suena el video, y regresa cuando termina */
+let musIba = false;
+document.addEventListener("play", e => { if (e.target.tagName === "VIDEO") { musIba = !cancion.paused && !bMus.hidden; if (!cancion.paused) { cancion.pause(); bMus.classList.remove("ap"); } } }, true);
+const sigueMus = e => { if (e.target.tagName === "VIDEO" && musIba && musOn) { musIba = false; tocaMus(); } };
+document.addEventListener("pause", sigueMus, true);
+document.addEventListener("ended", sigueMus, true);
+/* Saludo segun la hora */
+const hrs = new Date().getHours();
+$("#saludo").textContent = (hrs < 12 ? "BUENOS DÍAS" : hrs < 19 ? "BUENAS TARDES" : "BUENAS NOCHES") + " · UN DETALLE PARA TI";
+
+/* Aniversario mensual */
+const fIni = new Date(CFG.inicio), hoy = new Date();
+let nMes = (hoy.getFullYear() - fIni.getFullYear()) * 12 + (hoy.getMonth() - fIni.getMonth());
+if (hoy.getDate() < fIni.getDate()) nMes--;
+if (nMes > 0 && hoy.getDate() === fIni.getDate()) {
+  const aniv = $("#aniv"); aniv.hidden = false;
+  aniv.textContent = "HOY CUMPLIMOS " + nMes + " MESES JUNTOS " + String.fromCharCode(0x2665);
+  petalos(10);
+}
+
+/* Petalos que caen */
+const colsP = ["#c98a96", "#e8c4c8", "#a8455f", "#d4b97e"];
+function petalos(n) {
+  if (reducir) return;
+  for (let k = 0; k < n; k++) {
+    const p = document.createElement("span");
+    p.className = "petal";
+    p.style.cssText = "left:" + (4 + R() * 92).toFixed(1) + "vw;--c:" + colsP[Math.floor(R() * colsP.length)] + ";--d:" + (3.4 + R() * 2.4).toFixed(2) + "s;--v:" + (R() * 120 - 60).toFixed(0) + "px;width:" + (9 + R() * 9).toFixed(0) + "px;height:" + (9 + R() * 9).toFixed(0) + "px;animation-delay:" + (R() * .8).toFixed(2) + "s";
+    p.onanimationend = () => p.remove();
+    par.appendChild(p);
+  }
+}
+
+/* Galeria a pantalla completa */
+const lb = document.createElement("div");
+lb.className = "lb";
+lb.innerHTML = '<button class="lbx" id="lbx" aria-label="Cerrar">&#10005;</button><button class="lbn" id="lbP" aria-label="Anterior">&#8249;</button><button class="lbn" id="lbN" aria-label="Siguiente">&#8250;</button><img alt="Nuestra foto en grande">';
+document.body.appendChild(lb);
+let lbI = 0, lbx0 = null, lbGaleria = false;
+const lbImg = lb.querySelector("img");
+function lbOn() { return lb.classList.contains("abierto"); }
+function lbAbre(n) { lbI = n; lbGaleria = true; lbImg.src = ok[lbI].src; lb.classList.add("abierto"); document.body.classList.add("lock"); }
+function lbCierra() { lb.classList.remove("abierto"); if (!M.classList.contains("abierto")) document.body.classList.remove("lock"); lbImg.src = ""; }
+function lbVe(d) { if (!lbGaleria) return; lbI = (lbI + d + ok.length) % ok.length; lbImg.src = ok[lbI].src; }
+function lbFoto(src) { lbGaleria = false; lbImg.src = src; lb.classList.add("abierto"); document.body.classList.add("lock"); }
+lb.querySelector("#lbx").onclick = lbCierra;
+lb.querySelector("#lbP").onclick = () => lbVe(-1);
+lb.querySelector("#lbN").onclick = () => lbVe(1);
+lb.onclick = e => { if (e.target === lb) lbCierra(); };
+lb.addEventListener("touchstart", e => lbx0 = e.touches[0].clientX, {passive: true});
+lb.addEventListener("touchend", e => { if (lbx0 === null) return; const d = e.changedTouches[0].clientX - lbx0; if (Math.abs(d) > 45) lbVe(d < 0 ? 1 : -1); lbx0 = null; });
+/* Nuestras fechas */
+const MESES = ["ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"];
+$("#tl").innerHTML = CFG.fechas.map((f, n) => { const d = new Date(f.d + "T12:00:00"); return "<li" + (f.f ? " class=\"cona\" data-n=\"" + n + "\"" : "") + "><b>" + d.getDate() + " " + MESES[d.getMonth()] + " " + d.getFullYear() + "</b><span>" + f.t + "</span>" + (f.f ? "<i>VER FOTO</i>" : "") + "</li>"; }).join("");
+$("#tl").onclick = e => { const li = e.target.closest("li.cona"); if (li) lbFoto(CFG.fechas[+li.dataset.n].f); };
+</script>
+</body>
+</html>
